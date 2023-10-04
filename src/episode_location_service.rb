@@ -5,7 +5,6 @@ class EpisodeLocationService
     client = RickAndMortyClient.new
     @episodes = client.get_episodes
     @characters = client.get_characters
-    @locations = client.get_locations
     @characters_origin = {}
     set_characters_origin
   end

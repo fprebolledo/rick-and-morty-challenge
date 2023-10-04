@@ -10,8 +10,8 @@ class CharCounterService
   end
 
   def run
-    names = {'l': 'locations', 'e': 'episodes', 'c': 'characters' }
-    results = names.map { |char, resource| count_char_in_names(char.to_s, resource) }
+    resource_map = {'l': 'locations', 'e': 'episodes', 'c': 'characters' }
+    results = resource_map.map { |char, resource| count_char_in_names(char.to_s, resource) }
   
     return results
   end
@@ -31,10 +31,12 @@ class CharCounterService
     list.map { |element| element["name"].downcase }
   end
 
-  def ocurrences(strings, letter)
+  def ocurrences(strings, char)
+    return 0 if strings.nil? || char.nil?
+  
     strings.reduce(0) do |sum, string|
-      if string.include?(letter)
-        sum += string.count(letter)
+      if string.include?(char)
+        sum += string.count(char)
       end
       sum
     end

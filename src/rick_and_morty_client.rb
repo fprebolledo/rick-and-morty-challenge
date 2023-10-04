@@ -35,8 +35,9 @@ class RickAndMortyClient
   def get_content(url)
     uri = URI(url)
     response = JSON.parse(Net::HTTP.get(uri))
-    raise StandardError.new('Bad request') unless response
 
+    raise StandardError.new('Bad request') if (response.is_a?(Hash) && response['error'])
+   
     response
   end
 end
